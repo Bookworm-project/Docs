@@ -27,8 +27,7 @@ For reference, the general workflow of the Makefile is the following:
 6. Encode unigrams and bigrams from the binaries into `files/encoded`.
 7. Load wordcounts into MySQL database.
 8. Load metadata into MySQL database.
-9.
-10. Create temporary MySQL table and .json file that will be used by the web app.
-11. Create API settings for the web app.
+9. Create temporary MySQL table and .json file that will be used by the web app.
+10. Create API settings for the web app.
 
 At any point, you can backtrack part of the way by clearing out files from `files/targets`.

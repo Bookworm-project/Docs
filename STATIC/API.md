@@ -2,14 +2,14 @@
 
 The Bookworm API acts as an interchange format for requesting data about large collections of texts.
 
-The orthodox implementation at the time of writing is [my BookwormAPI repository](github.com/bmschmidt/BookwormAPI), written in Python and connecting to the MySQL backend.
+The orthodox implementation at the time of writing is [my BookwormAPI repository](https://www.github.com/Bookworm-project/BookwormAPI), written in Python and connecting to the MySQL backend.
 
 One of the major advantages of the API, however, is that it can be implemented on top of other systems (in whole or in part); so that bookcounts queries can easily be run through Solr, for example.
 
 # Setting up an API server
 
 
-[My BookwormAPI repository](github.com/bmschmidt/BookwormAPI) contains the scripts necessary to run an API on a local machine which has a MySQL backend already running.
+[My BookwormAPI repository](https://www.github.com/Bookworm-project/BookwormAPI) contains the scripts necessary to run an API on a local machine which has a MySQL backend already running.
 
 You can clone the repository directly into your webserver's `/cgi-bin` directory, or just download the scripts if there are other cgi-scripts you don't want to disturb. Once it's cloned, you should be able to query the database by hitting, for example, `http://myhost.org/cgi-bin/dbbindings.py?queryTerms={"database":"YOURDBNAME","method":"returnPossibleFields"}`
 
