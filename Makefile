@@ -20,5 +20,5 @@ pages: _book
 	git rm -rf --cached --quiet * && \
 	rsync -a $${root_dir}/_book/ . && \
 	git add -A && git commit --quiet -m "update gh-pages" && \
-	git push --quiet origin master:gh-pages && \
+	git push origin master:gh-pages && \
 	rm -rf $(tmp_dir)
