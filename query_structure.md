@@ -1,6 +1,7 @@
 # Query Structure
 
-A Bookworm query is a JSON dictionary with keys describing the objects to be fetched. Each key is essentially a function argument.
+A Bookworm query is a JSON object with keys describing the objects to be fetched. Each key is essentially a function argument.
+The syntax for queries is largely taken from MongoDB.
 
 This definition is open for review, and will probably change before the 1.0 release.
 
@@ -41,7 +42,25 @@ Be very careful with the choices, because too many groups can quickly make a que
 
 Possible fields include any of the user-defined metadata, as well as "unigram" or "bigram" to return wordcount data.
 
-Grouping by "unigram" or "bigram" can be quite slow, and should only be attempted be attempted for the time being on subcorpora of, say, 1 million words or less at a time.
+Grouping by "unigram" or "bigram" can be quite slow, and should only be attempted be attempted for the time being on subcorpora of, say, 1 million words or less at a time. (On larger corpora, you'll just up timing out.)
+
+
+### Different groups for main query and comparison groups
+
+Ordinarily, each ratio summary statistic ("Percentage of Books," say) refers directly to the interaction of group A and group B. Sometimes, this is less than useful.
+Ordinarily a query like
+`{"groups":["year","library"],"counttype":["TextPercent"]}`
+will give for each interaction of year and library the number of texts that come from that particular library in that year. That's not interesting. (By definition, it will always be 100%.
+
+On the other hand,
+
+* `{"groups":["year","*library"],"counttype":["TextPercent"]}` will drop the library grouping on the superset and give the percentage of all texts for that year that come from the library, so each column will sum to 100%;
+* `{"groups":["*year","library"],"counttype":["TextPercent"]}` will drop the year superset and give the percentage of all texts for that library that come from that year and library.
+* Finally, `{"groups":["*year","*library"], "counttype":["TextPercent"]}` will drop **both** and give the percentage of all texts for the library defined by search_limits or constrain_limits contained in each cell: the sum of all the TextPercent cells in the entire return set should be 100. (Though it may not be if year or library is undefined for some items).
+
+
+Combining this syntax with that for defining a separate `compare_limits` will produce some pretty nonsensical queries, so it's generally better to do just one or the other.
+
 
 ## Operation keys
 
@@ -106,7 +125,7 @@ Often you want not the top texts, but some **representative texts**. For this pu
 Currently, random sorting is handled in an interesting way. If the counttype relies on the *number or ratio of texts*, it sorts the texts in random order.
 
 If the counttype relies on the *number of ratio of words*, however, it tries to sort the texts randomly weighted by the number of times the words appear in it. This means that **a random word from the first text should represent a random *usage* from the overall sample**.
-The current MySQL-python implementation uses an approximation for this: `LOG(1-RAND())/sum(main.count)` that should mimic a true a weighted ordering for most distributions, but in some cases it may not behave as intended.
+The current MySQL-python implementation uses an approximation for this: `LOG(1-RAND())/sum(main.count)` that should mimic a weighted random ordering for most distributions, but in some cases it may not behave as intended.
 
 > In progress. True weighted random ordering will be more expensive in time but potentially useful.
 
@@ -127,10 +146,20 @@ Possible values:
 
 > **In progress**: I'm inclined to think this should be eliminated and instead users could specify 'casesens','case_insens' or 'stem' directly, and the API would translate the results appropriately. It's slightly uglier, but would allow more complicated queries (such as mixing case sensitive and insensitive in the same limits, or using separate values for groupings and search limits)
 
-> (Maybe `word` would map to case-insensitive, and 'Word' would map to case-sensitive?; likewise 'unigram' and 'Unigram', etc?)
-
-### Context-Specific settings.
+### Application-defined keys.
 
 If you build a web or analysis app using Bookworm, you're encouraged to use the dict to add other keys storing other elements of the state. For example, the layout preferences for the D3 bookworm are stored in an `aesthetic` field which maps to a dictionary; and both GUIs use a field called `smoothingSpan` to represent smoothing.
 
 The advantage of doing this is state persistence for RESTful apps, portability, and helpfulness for the logs.
+
+#### Reserved keys
+
+We may need to reserve a few keys for own use down the road. So if you do define something, avoid using the following unless you're contributing to a core project:
+
+D3-bookworm reserved
+* aesthetic
+
+Future authentication needs
+* key
+* token
+* user

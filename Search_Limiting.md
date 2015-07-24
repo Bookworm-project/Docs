@@ -21,11 +21,10 @@ A few keys should be supported in all bookworms, though:
     * The one term that is pre-defined in (almost) all bookworms is the term `"word"` (which matches, despite its name, any phrase up to the number of supported grams).
     * `unigram` or `bigram` can be used as a synonym for word. This is particularly useful in searching for groups.
     * `hasword` can limit the search to only books that containing the specified word. (Not currently supported, but part of the specification)
-        * > It's possible this should be retitled `$hasword` from `hasword` to better match the syntax below.
+        * > **In progress**: It's possible this should be retitled `$hasword` from `hasword` to better match the syntax below.
 
-> There should also be a syntax built in to support **proximity** searches: these are not possible under MySQL, but will be under Solr.
-
-I'd suggest something along the lines of `{"near":["foo",5]}` where foo is the word and five is the proximity range.
+> **In progress**: There should also be a syntax built in to support **proximity** searches: these are not possible under MySQL, but would be under Solr.
+>  I'd suggest something along the lines of `{"near":["foo",5]}` where foo is the word and five is the proximity range.
 
 ## Categorical limits.
 
@@ -91,7 +90,10 @@ So to limit to books published between 1900 and 1950, **either** of the followin
 More complicated boolean statements are possible by using the special `$or` construction. (This syntax is also borrowed from MongoDB). `$or` points to an array, **any element of which might be true**. To search for books that are either published in the US or by US-born authors, for example, you might limit as follows:
 
 ```
-{"$or":[{"country":["USA"],"author_birth_country":["USA"]}}]
+{"$or":[
+      {"country":["USA"]},
+	  {"author_birth_country":["USA"]}
+]}
 ```
 
 `$and` is the opposite of `$or`: so the following query:

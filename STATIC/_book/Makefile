@@ -1,6 +1,0 @@
-
-all:
-	gitbook build . --output=..
-
-
-
