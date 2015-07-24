@@ -13,7 +13,7 @@ _book: $(sources)
 
 pages: _book
 	root_dir=$$(git rev-parse --show-toplevel) && \
-	rm -rf _tmp \
+	rm -rf _tmp && \
 	mkdir _tmp && \
 	cd _tmp && \
 	git init --quiet && \
