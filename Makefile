@@ -25,3 +25,4 @@ pages: _book
 	git push origin master:gh-pages && \
 	cd ..
 
+_tmp
