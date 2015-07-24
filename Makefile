@@ -10,10 +10,12 @@ _book: $(sources)
 # Strategy from
 # http://aaren.me/thesis/2014/10/27/auto-build-jekyll-github-pages/
 
+
 pages: _book
 	root_dir=$$(git rev-parse --show-toplevel) && \
-	tmp_dir=$$(mktemp -d XXXXXXX) && \
-	cd $${tmp_dir} && \
+	rm -rf _tmp \
+	mkdir _tmp && \
+	cd _tmp && \
 	git init --quiet && \
 	git remote add origin $${root_dir} && \
 	git pull --quiet origin gh-pages && \
@@ -21,5 +23,5 @@ pages: _book
 	rsync -a $${root_dir}/_book/ . && \
 	git add -A && git commit --quiet -m "update gh-pages" && \
 	git push origin master:gh-pages && \
-	cd .. #&& \
-#	rm -rf $(tmp_dir)
+	cd ..
+
