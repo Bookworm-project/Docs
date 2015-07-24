@@ -3,6 +3,7 @@ sources=$(wildcard *.md)
 all: _book pages
 
 _book: $(sources)
+	rm -rf _tmp
 	gitbook build
 
 # build _book and push diff to gh-pages branch
@@ -13,7 +14,6 @@ _book: $(sources)
 
 pages: _book
 	root_dir=$$(git rev-parse --show-toplevel) && \
-	rm -rf _tmp && \
 	mkdir _tmp && \
 	cd _tmp && \
 	git init --quiet && \
