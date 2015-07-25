@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="." data-revision="Fri Jul 24 2015 15:53:25 GMT-0400 (EDT)">
+    <div class="book" data-level="2.2" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -505,8 +505,25 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="required-files">Required Files</h1>
-<p>To build a bookworm, files are required in three places. Relative to the root directory (which will be called <code>Presidio</code> if you clone this repo directly), they are all in a subdirectory called <code>files</code>. When you&apos;ve built them all, it will look like this:</p>
-<pre><code>Presidio/
+<p>To build a bookworm, you need three files:</p>
+<ol>
+<li><code>input.txt</code>: a single file containing your texts (see the section for alternates if that&apos;s impractical;</li>
+<li><code>jsoncatalog.txt</code>: metadata about each text;</li>
+<li><code>field_descriptions.json</code>: metadata about your metadata, such as which fields are dates and which are categorical.</li>
+</ol>
+<p>The result of this chapter describes the format for these three input files.</p>
+<p>These can be stored in one of two locations:</p>
+<h2 id="external-format">External format</h2>
+<p>If you want to clone a bookworm as part of a larger installation, you can leave the files in a root directory. This is frequently cleaner. In this case, your file structure will look like.</p>
+<pre><code>your_directory/
+ -- jsoncatalog.txt
+ -- input.txt
+ -- field_descriptions.json
+ -- BookwormDB/
+</code></pre><p>To build the Bookworm, navigate to the clone BookwormDB folder; it will know to read files from one directory up.</p>
+<h2 id="internal-format">Internal Format</h2>
+<p>This is a legacy format. Relative to the root directory (which will be called <code>BookwormDB</code> if you clone this repo directly), they are all in a subdirectory called <code>files</code>. When you&apos;ve built them all, it will look like this:</p>
+<pre><code>BookwormDB/
  -- files/
   | -- texts/
   |  | raw  &lt;--- (alternate method: contains texts files or hierarchical folders of text files)
@@ -514,8 +531,7 @@
   | -- metadata/
   |  | -- jsoncatalog.txt
   |  | -- field_descriptions.json
-</code></pre><p>The result of this chapter describes the format for these three input files.</p>
-
+</code></pre>
                     
                     </section>
                 
