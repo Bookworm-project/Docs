@@ -34,7 +34,7 @@ Bookworm allows you to add **additional** data into the database once it's been 
 To do this, run `bookworm.py` with the add_metadata argument.
 
 ```bash
-./bookworm.py add_metadata \
+bookworm add_metadata \
     --file=yourfilename.txt \
     --field_descriptions=separate_field_descriptions.json
 ```
@@ -42,7 +42,7 @@ To do this, run `bookworm.py` with the add_metadata argument.
 `file` is the new metadata: A full list of the available options can be seen in the shell by typing:
 
 ```shell
-./bookworm.py add_metadata --help
+bookworm add_metadata --help
 ```
 
 These include 'key', which is the metadata field that links into your existing database.
@@ -53,7 +53,7 @@ In general, the metadata here is handled in **exactly the same** way as the orig
 
 An much easier but less powerful method is to import a TSV file.
 
-`./bookworm.py add_metadata --format=tsv --file=filename.tsv`
+`bookworm add_metadata --format=tsv --file=filename.tsv`
 
 This is just a convenience wrapper; the code will convert the tsv to a bunch of json entries; if you do not pass in a `key` argument it assumes the first column is the anchor field.
 
@@ -80,7 +80,7 @@ date_year    date_decade
 Then go to your bookworm folder, and type in
 
 ```bash
-./bookworm.py add_metadata \
+bookworm add_metadata \
      --format=tsv \
      --file=~/misc/new_metadata.tsv
 ```
@@ -109,7 +109,7 @@ curl -G localhost/cgi-bin/dbbindings.py --data-urlencode "query={\"database\":\"
      print \$1,$floor_to_nearest*int(\$1/$floor_to_nearest)\
    }}" >> new_data.tsv
 
-./bookworm.py add_metadata \
+bookworm add_metadata \
      --format=tsv \
      --file=new_data.tsv
 
