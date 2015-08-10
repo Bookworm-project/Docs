@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="5" data-basepath="." data-revision="Mon Aug 10 2015 15:22:25 GMT-0400 (EDT)">
+    <div class="book" data-level="5" data-basepath="." data-revision="Mon Aug 10 2015 15:31:08 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -506,9 +506,9 @@
                     
                         <h1 id="chapter-3-web-front-ends">Chapter 3: Web Front Ends</h1>
 <p>The API is designed to allow a variety of possible visualizations. We&apos;ve implemented a few.</p>
-<h2 id="the-primary-gui">The Primary GUI</h2>
-<p>The primary GUI is at <a href="https://github.com/econpy/BookwormGUI" target="_blank">https://github.com/econpy/BookwormGUI</a>. It runs on the highcharts library, and generates attractive line charts over time. It&apos;s easy to use, meets a significant percentage of use cases, and has some very nice design.</p>
-<h3 id="setting-up-a-gui-instance">Setting up a GUI instance.</h3>
+<h2 id="the-linechart-gui">The Linechart GUI.</h2>
+<p>The primary linechart GUI is at <a href="https://github.com/bookworm-project/BookwormGUI" target="_blank">https://github.com/bookworm-project/BookwormGUI</a>. It runs on the highcharts library, and generates attractive line charts over time. It&apos;s easy to use, and meets a significant percentage of use cases.</p>
+<h3 id="setting-up-a-linechart-gui-instance">Setting up a linechart GUI instance.</h3>
 <p>To set up a Bookworm using the primary GUI, clone the git repository into a directory that&apos;s being served through your webserver. The web server application determines the name of your bookworm from the webpage you give it, so the folder should be named the same as your database. If your database is named <code>federalist</code>, for example, your page should be located at <code>http://myhost.org/federalist</code> or <code>http://federalist.myhost.org</code>.</p>
 <p>You also need to copy the settings files created when you ran the bookworm. If your bookworm is named &quot;mybookworm,&quot; this will be located at <code>/mybookworm.json</code> in the files directory: so from the root bookworm directory, you can set it up by running <code>cp files/mybookworm.json /var/www/static/options.json</code>.</p>
 <p>With that done, it should run nicely.</p>
