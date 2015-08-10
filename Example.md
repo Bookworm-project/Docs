@@ -1,6 +1,7 @@
 # An example workflow
 
-You may have your own workflow, but let me suggest one potential way to make a Bookworm portable so that you can easily redeploy it across servers or upgrade it to new versions; saving all the creation scripts in a git repository designed to clone the latest bookworm into the level above it.
+You may have your own workflow, but let me suggest one potential way to make a Bookworm portable so that you can easily redeploy it across servers or upgrade it to new versions; saving all the creation scripts in a git repository
+that you also initialize as a bookworm directory.
 
 I'll use as an example the [Federalist papers bookworm](https://github.com/bmschmidt/federalist-bookworm), which adopts this format.
 
@@ -15,15 +16,13 @@ The goal of this repository is that you can clone it to any computer and quickly
 That Makefile should have a few base targets.
 
 Those are:
-* `bookworm` -- a cloned version of the [backend repository](https://github.com/bmschmidt/Presidio)
+* `.bookworm` -- the hidden directory containing bookworm-specific files. Always created with `bookworm init`. 
 * The three files required for the bookworm:
-    * `bookworm/files/texts/input.txt`
-    * `bookworm/files/metadata/jsoncatalog.txt`
-    * `bookworm/files/metadata/jsoncatalog.txt/field_descriptions.json`
+    * `input.txt`
+    * `jsoncatalog.txt`
+    * `field_descriptions.json`
 * A target like `bookwormcompleted` that causes the bookworm to actually be run.
 
-
-For the Federalist example, I store input.txt and jsoncatalog.txt at the base level, and then simply copy them up; this makes it a little easier to see what's going on, or to delete the full repository if needed.
 
 The main script that actually makes the inputs from the data we have on hand (here stored in the file "federalist.papers.XML" which has both data and metadata) is `parseXML.py`. The real work will go into making that script work right.
 
@@ -37,13 +36,20 @@ jsoncatalog.txt: webpages
 
 ```
 
-The hardest of the three to script automatically is `field_descriptions.json`; probably you should just write that manually.
+The hardest of the three to script automatically is `field_descriptions.json`; probably you should just write that manually, but you can get a template to work from by running `bookworm prep guessAtFieldDescriptions`.
 
 The last step in the Makefile relies on all the other files, and actually descends into the Bookworm folder to do a make. Note that although here it doesn't reuire the field_descriptions.json file explicitly, it creates it using the `scripts/guessAtDerivedCatalog.py` script. You can use that guessing script for a first stab, but I strongly recommend not just copying the file directly unless you know that and why it works.
 
 ```
-bookwormdatabase: bookworm bookworm/bookworm.cnf bookworm/files/texts/input.txt bookworm/files/metadata/jsoncatalog.txt
-	cd bookworm; git checkout lessDiskSpace;
-	cd bookworm; python scripts/guessAtDerivedCatalog.py
-	cd bookworm; make all
+bookworm.cnf:
+	bookworm init
+
+.bookworm:
+	bookworm init
+
+bookwormdatabase: bookworm bookworm.cnf input.txt jsoncatalog.txt
+	bookworm build all
 ```
+
+
+One these have run, run `bookworm serve` to set up a simple interactive webserver at http://localhost:8005.

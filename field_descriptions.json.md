@@ -1,12 +1,17 @@
 # `field_descriptions.json`
 
-The `field_descriptions.json` file is metadata about the metadata. This defines how the keys in `jsoncatalog.txt` will be interpreted. Not all data you put in will have the same purpose. Some fields (like `policalParty` or `subject`) will be **categorical** elements suitable for choosing from a dropdown menu; others (like `publish_year` or `authorBirthYear`) will be time variables you'll want to display on the X axis; yet others (like `authorName`) might be fields you want to allow in searches, but which web users would never see as a full list. This file is where you.
+The `field_descriptions.json` file is metadata about the metadata. This defines how the keys in `jsoncatalog.txt` will be interpreted.
+Not all data you put in will have the same purpose. Some fields (like `policalParty` or `subject`) will be **categorical** elements suitable for choosing from a dropdown menu;
+others (like `publish_year` or `authorBirthYear`) will be time variables you'll want to display on the X axis;
+yet others (like `authorName`) might be fields you want to allow in searches, but which web users would never see as a full list.
+
+This file is where you give the parser information.
 
 ### The automatic guesser
 
-If you don't enter in a field_descriptions.json, Bookworm will simply guess based on the name and layout of the fields what kind of data is stored in them. There's a really good chance this will fail, so don't rely on it very heavily. But it can be helpful to run it manually before building the bookworm (by running `python OneClick.py guessAtFieldDescriptions`) and then use the output at `files/metadata/field_descriptions.json` as a template to edit.
+If you don't enter in a field_descriptions.json, Bookworm can will simply guess based on the name and layout of the fields what kind of data is stored in them. There's a really good chance this will fail, so don't rely on it very heavily. But it can be helpful to run it manually before building the bookworm (by running bookworm prep guessAtFieldDescriptions`) and then use the output at `field_descriptions.json` as a template.
 
-But see the chapter of "Future Plans" below for one option to use field names from a defined ontology (like Dublin Core) to automatically handle data.
+See the chapter of "Future Plans" below for one option to use field names from a defined ontology (like Dublin Core) to automatically handle data.
 
 ### Constraints on field names
 
@@ -18,6 +23,8 @@ Bookworm creation may fail and throw an error if put in a key name that does any
     * group
     * in
     * limit
+
+Bookworm will throw a warning and drop any fields matching this description.
 
 
 ### Future options

@@ -10,7 +10,7 @@ Each extension should be a git repository that can be cloned into that extension
 
 That directory location means it will have access to your local bookworm configuration and other information. For example: once the geotagger builds its own metadata file,
 
-```cd ../..; python OneClick.py supplementMetadataFromJSON extensions/geotagger/metadata.txt filename```
+```bookworm add_metadata extensions/geotagger/metadata.txt filename```
 
 ## Existing/under development Extensions
 
@@ -78,5 +78,7 @@ metadata.txt:
 	cat ../../files/texts/input.txt | parallel  --block-size 1M --pipe ./tagAChunk.sh > metadata.txt
 ```
 
-This is clearly a bad idea, since it will break on other file storage techniques, we need to firmly define the `textStream` protocol for irregular bookworms, though, before this happens.
+This is clearly a bad idea, since it will break on other file storage techniques. Newer extension should use the protocol `bookworm tokenize text_stream`, or if you want whitespace-delimited tokens, `bookworm tokenize text_stream | book tokenize token_stream`. 
+
+
 
