@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.2" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="2.2" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -514,7 +514,9 @@
 <p>The result of this chapter describes the format for these three input files.</p>
 <p>These can be stored in one of two locations:</p>
 <h2 id="external-format">External format</h2>
-<p>If you want to clone a bookworm as part of a larger installation, you can leave the files in a root directory. This is frequently cleaner. In this case, your file structure will look like.</p>
+<p>If you want to clone a bookworm as part of a larger installation, you
+can leave the files in a root directory. This is frequently cleaner,
+and is the recommended format. In this case, your file structure will look like.</p>
 <pre><code>your_directory/
  -- jsoncatalog.txt
  -- input.txt
@@ -531,7 +533,10 @@
   | -- metadata/
   |  | -- jsoncatalog.txt
   |  | -- field_descriptions.json
-</code></pre>
+</code></pre><p>There is also a highly deprecated format, occasionally suggested by
+some old documentation and installations, that recommends a folder
+called <code>texts</code> inside files. Do not use this format.</p>
+
                     
                     </section>
                 

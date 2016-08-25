@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.5" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="2.5" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -505,10 +505,14 @@
                     <section class="normal" id="section-">
                     
                         <h1 id="-field-descriptions-json"><code>field_descriptions.json</code></h1>
-<p>The <code>field_descriptions.json</code> file is metadata about the metadata. This defines how the keys in <code>jsoncatalog.txt</code> will be interpreted. Not all data you put in will have the same purpose. Some fields (like <code>policalParty</code> or <code>subject</code>) will be <strong>categorical</strong> elements suitable for choosing from a dropdown menu; others (like <code>publish_year</code> or <code>authorBirthYear</code>) will be time variables you&apos;ll want to display on the X axis; yet others (like <code>authorName</code>) might be fields you want to allow in searches, but which web users would never see as a full list. This file is where you.</p>
+<p>The <code>field_descriptions.json</code> file is metadata about the metadata. This defines how the keys in <code>jsoncatalog.txt</code> will be interpreted.
+Not all data you put in will have the same purpose. Some fields (like <code>policalParty</code> or <code>subject</code>) will be <strong>categorical</strong> elements suitable for choosing from a dropdown menu;
+others (like <code>publish_year</code> or <code>authorBirthYear</code>) will be time variables you&apos;ll want to display on the X axis;
+yet others (like <code>authorName</code>) might be fields you want to allow in searches, but which web users would never see as a full list.</p>
+<p>This file is where you give the parser information.</p>
 <h3 id="the-automatic-guesser">The automatic guesser</h3>
-<p>If you don&apos;t enter in a field_descriptions.json, Bookworm will simply guess based on the name and layout of the fields what kind of data is stored in them. There&apos;s a really good chance this will fail, so don&apos;t rely on it very heavily. But it can be helpful to run it manually before building the bookworm (by running <code>python OneClick.py guessAtFieldDescriptions</code>) and then use the output at <code>files/metadata/field_descriptions.json</code> as a template to edit.</p>
-<p>But see the chapter of &quot;Future Plans&quot; below for one option to use field names from a defined ontology (like Dublin Core) to automatically handle data.</p>
+<p>If you don&apos;t enter in a field_descriptions.json, Bookworm can will simply guess based on the name and layout of the fields what kind of data is stored in them. There&apos;s a really good chance this will fail, so don&apos;t rely on it very heavily. But it can be helpful to run it manually before building the bookworm (by running bookworm prep guessAtFieldDescriptions<code>) and then use the output at</code>field_descriptions.json` as a template.</p>
+<p>See the chapter of &quot;Future Plans&quot; below for one option to use field names from a defined ontology (like Dublin Core) to automatically handle data.</p>
 <h3 id="constraints-on-field-names">Constraints on field names</h3>
 <p>Bookworm creation may fail and throw an error if put in a key name that does any of the following things:</p>
 <ul>
@@ -521,6 +525,7 @@
 </ul>
 </li>
 </ul>
+<p>Bookworm will throw a warning and drop any fields matching this description.</p>
 <h3 id="future-options">Future options</h3>
 <p>Here is an example of the <code>field_descriptions.json</code> file from the Open Library Bookworm:</p>
 <pre><code class="lang-{js}">[

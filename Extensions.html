@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="8" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="8" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -510,7 +510,7 @@
 <p>The /extensions folder in a Bookworm is not created by default, but can be filled with folders; each folder is an installed extension.</p>
 <p>Each extension should be a git repository that can be cloned into that extensions location. The single command <code>make</code> run in that directory should run the build; it&apos;s permissible for an extension to require command-line input.</p>
 <p>That directory location means it will have access to your local bookworm configuration and other information. For example: once the geotagger builds its own metadata file,</p>
-<p><code>cd ../..; python OneClick.py supplementMetadataFromJSON extensions/geotagger/metadata.txt filename</code></p>
+<p><code>bookworm add_metadata extensions/geotagger/metadata.txt filename</code></p>
 <h2 id="existing-under-development-extensions">Existing/under development Extensions</h2>
 <h3 id="topic-modeling">Topic Modeling</h3>
 <p>The topic modeling extension adjusts the master wordcounts file so that each word has a topic assignment.</p>
@@ -545,7 +545,7 @@
 <p>Currently, a few extensions access the <code>input.txt</code> file. For example, in the geotagger extension:</p>
 <pre><code>metadata.txt:
     cat ../../files/texts/input.txt | parallel  --block-size 1M --pipe ./tagAChunk.sh &gt; metadata.txt
-</code></pre><p>This is clearly a bad idea, since it will break on other file storage techniques, we need to firmly define the <code>textStream</code> protocol for irregular bookworms, though, before this happens.</p>
+</code></pre><p>This is clearly a bad idea, since it will break on other file storage techniques. Newer extension should use the protocol <code>bookworm tokenize text_stream</code>, or if you want whitespace-delimited tokens, <code>bookworm tokenize text_stream | book tokenize token_stream</code>. </p>
 
                     
                     </section>

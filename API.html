@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="4" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="4" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -508,11 +508,16 @@
 <p>The Bookworm API acts as an interchange format for requesting data about large collections of texts.</p>
 <p>The orthodox implementation at the time of writing is <a href="https://www.github.com/Bookworm-project/BookwormAPI" target="_blank">my BookwormAPI repository</a>, written in Python and connecting to the MySQL backend.</p>
 <p>One of the major advantages of the API, however, is that it can be implemented on top of other systems (in whole or in part); so that bookcounts queries can easily be run through Solr, for example.</p>
-<p><a href="https://www.github.com/Bookworm-project/BookwormAPI" target="_blank">The BookwormAPI repository</a> contains the scripts necessary to run an API on a local machine which has a MySQL backend already running.</p>
 <p>You can clone the repository directly into your webserver&apos;s <code>/cgi-bin</code> directory, or just download the scripts if there are other cgi-scripts you don&apos;t want to disturb. Once it&apos;s cloned, you should be able to query the database by hitting, for example, <code>http://myhost.org/cgi-bin/dbbindings.py?queryTerms={&quot;database&quot;:&quot;YOURDBNAME&quot;,&quot;method&quot;:&quot;returnPossibleFields&quot;}</code></p>
 <p>Your local web installations will rely on this API working to make queries.</p>
 <h3 id="troubleshooting">Troubleshooting</h3>
+<p>You can submit issues ot the github page.</p>
+<h4 id="is-your-bookworm-code-broken">Is your bookworm code broken?</h4>
+<p>To tell if your API is broken, first try the command-line interface to the API using <code>bookworm query &apos;{&quot;format&quot;:&quot;return_tsv&quot;,&quot;database&quot;:&quot;$your_database&quot;,&quot;counttype&quot;:&quot;counttype&quot;}&apos;</code> </p>
+<p>Also try running the federalist test suite by running some of the test scripts.</p>
+<h4 id="is-your-apache-configuration-working">Is your Apache configuration working?</h4>
 <p>This script uses python to connect to MySQL through Apache, so there are many possible points of failure. Check <code>/var/log/apache2/error.log</code> or elsewhere.</p>
+<p>If that works but the cgi-bin </p>
 <ol>
 <li>Are all python modules loaded?</li>
 <li>Are .py scripts in <code>/cgi-bin</code> treated as executable?</li>

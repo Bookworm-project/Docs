@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="2.8" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="2.8" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -508,8 +508,8 @@
 <p>Bookworm stores its master lookup tables in memory rather than on disk to make lookups faster.</p>
 <p>If there&apos;s sufficient demand, we can modify the code to allow the creation of slower but non-memory-consuming bookworms.</p>
 <p>Old versions of Bookworm dumped out a .sql file that recreated the memory tables on restart, and added a chron job to ensure it happened.</p>
-<p>The new version stores the code in the database itself, and can be run by invoking <code>./bookworm.py reload_memory</code> from the Bookworm directory.</p>
-<p>There are a few potential options for this you can see by typing <code>./bookworm.py reload_memory --help</code>, that do things like not reload tables that are already populated for speed.</p>
+<p>The new version stores the code in the database itself, and can be run by invoking <code>bookworm reload_memory</code> from the Bookworm directory.</p>
+<p>There are a few potential options for this you can see by typing <code>bookworm reload_memory --help</code>, that do things like not reload tables that are already populated for speed.</p>
 
                     
                     </section>

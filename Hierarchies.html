@@ -36,7 +36,7 @@
     <body>
         
         
-    <div class="book" data-level="3" data-basepath="." data-revision="Sat Jul 25 2015 00:02:45 GMT-0400 (EDT)">
+    <div class="book" data-level="3" data-basepath="." data-revision="Thu Aug 25 2016 12:43:39 GMT-0400 (EDT)">
     
 
 <div class="book-summary">
@@ -524,18 +524,18 @@
 </code></pre><h2 id="implementation">Implementation</h2>
 <p>Bookworm allows you to add <strong>additional</strong> data into the database once it&apos;s been created.</p>
 <p>To do this, run <code>bookworm.py</code> with the add_metadata argument.</p>
-<pre><code class="lang-bash">./bookworm.py add_metadata \
+<pre><code class="lang-bash">bookworm add_metadata \
     --file=yourfilename.txt \
     --field_descriptions=separate_field_descriptions.json
 </code></pre>
 <p><code>file</code> is the new metadata: A full list of the available options can be seen in the shell by typing:</p>
-<pre><code class="lang-shell">./bookworm.py add_metadata --help
+<pre><code class="lang-shell">bookworm add_metadata --help
 </code></pre>
 <p>These include &apos;key&apos;, which is the metadata field that links into your existing database.</p>
 <p>In general, the metadata here is handled in <strong>exactly the same</strong> way as the original metadata you supplied to bookworm. The format for the <code>field_descriptions</code> file is the same as the <a href="field_descriptions.json.html">field_descriptions.json</a> file; the format for the file imported is identical to the format for the <a href="JSONcatalog.html">jsoncatalog.txt file</a>.</p>
 <h3 id="simpler-import-formats">Simpler import formats.</h3>
 <p>An much easier but less powerful method is to import a TSV file.</p>
-<p><code>./bookworm.py add_metadata --format=tsv --file=filename.tsv</code></p>
+<p><code>bookworm add_metadata --format=tsv --file=filename.tsv</code></p>
 <p>This is just a convenience wrapper; the code will convert the tsv to a bunch of json entries; if you do not pass in a <code>key</code> argument it assumes the first column is the anchor field.</p>
 <p>This makes it easy to quickly add new fields in the course of looking at data.</p>
 <h2 id="example-rounding-to-years">Example: Rounding to years</h2>
@@ -552,7 +552,7 @@
 [...]
 </code></pre>
 <p>Then go to your bookworm folder, and type in</p>
-<pre><code class="lang-bash">./bookworm.py add_metadata \
+<pre><code class="lang-bash">bookworm add_metadata \
      --format=tsv \
      --file=~/misc/new_metadata.tsv
 </code></pre>
@@ -576,7 +576,7 @@ curl -G localhost/cgi-bin/dbbindings.py --data-urlencode <span class="hljs-strin
      print \$1,<span class="hljs-variable">$floor_to_nearest</span>*int(\$1/<span class="hljs-variable">$floor_to_nearest</span>)\
    }}&quot;</span> &gt;&gt; new_data.tsv
 
-./bookworm.py add_metadata \
+bookworm add_metadata \
      --format=tsv \
      --file=new_data.tsv
 </code></pre>
