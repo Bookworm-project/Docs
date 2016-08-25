@@ -12,7 +12,9 @@ These can be stored in one of two locations:
 
 ## External format
 
-If you want to clone a bookworm as part of a larger installation, you can leave the files in a root directory. This is frequently cleaner. In this case, your file structure will look like.
+If you want to clone a bookworm as part of a larger installation, you
+can leave the files in a root directory. This is frequently cleaner,
+and is the recommended format. In this case, your file structure will look like.
 
 ```
 your_directory/
@@ -40,3 +42,6 @@ BookwormDB/
 
 ```
 
+There is also a highly deprecated format, occasionally suggested by
+some old documentation and installations, that recommends a folder
+called `texts` inside files. Do not use this format.
