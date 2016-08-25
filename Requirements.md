@@ -21,14 +21,13 @@ your_directory/
  -- jsoncatalog.txt
  -- input.txt
  -- field_descriptions.json
- -- BookwormDB/
 ```
 
-To build the Bookworm, navigate to the clone BookwormDB folder; it will know to read files from one directory up.
+To build the Bookworm, follow the instructions.
 
 ## Internal Format
 
-This is a legacy format. Relative to the root directory (which will be called `BookwormDB` if you clone this repo directly), they are all in a subdirectory called `files`. When you've built them all, it will look like this:
+This is a legacy format. There is no reason to use it. Relative to the root directory (which will be called `BookwormDB` if you clone this repo directly), they are all in a subdirectory called `files`. When you've built them all, it will look like this:
 
 ```
 BookwormDB/
@@ -44,4 +43,4 @@ BookwormDB/
 
 There is also a highly deprecated format, occasionally suggested by
 some old documentation and installations, that recommends a folder
-called `texts` inside files. Do not use this format.
+called `texts` inside files. Really, really, do not use this format. 
