@@ -30,4 +30,4 @@ I'm going to try to use `Bookworm` (capitalized) to refer to the project as a wh
 
 ## Editing this document
 
-We welcome fixes or additions based on your experience with the project. File an issue on github, or you can directly edit this document by generating a pull request on the `gh-pages` branch of this repository. All edits should be to the Markdown files in the `STATIC` directory: the HTML in the base directory is routinely overwritten.
+We welcome fixes or additions based on your experience with the project. File an issue on github, or you can directly edit this document by generating a pull request on the `master` branch of this repository. All edits should be to the Markdown files in the base directory: it's compiled using gitbook to a full webpage.
